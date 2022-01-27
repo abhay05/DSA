@@ -28,8 +28,13 @@ class Solution {
                         j++;
                         
                     }
+                    k--;
+                    while(k>j && nums[k]==nums[k+1]){
+                        k--;
+                    }
+                    if(k<=j) break;
                     if(j>=nums.length)break;
-                    k=nums.length-1;
+                 //   k=nums.length-1;
                    // break;
                     }
                 else if(nums[i]+nums[j]+nums[k]>0){
