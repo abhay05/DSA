@@ -14,6 +14,8 @@ class Solution {
                 if(target-(nums[i]+nums[j])>nums[n-1]+nums[n-2])continue;
                 //if(j+2<n){
                 if(j+2<n && target-(nums[i]+nums[j])<nums[j+1]+nums[j+2])continue;
+                // adding above two conditions of removing unncessary cases has
+                // decreased run time from 20 ms 60 percentile to 5ms 97 percentile
                 int k=j+1;
                 int l=nums.length-1;
                 while(k<l){
