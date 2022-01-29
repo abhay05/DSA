@@ -12,6 +12,8 @@ class Solution {
                     continue;
                 }
                 if(target-(nums[i]+nums[j])>nums[n-1]+nums[n-2])continue;
+                //if(j+2<n){
+                if(j+2<n && target-(nums[i]+nums[j])<nums[j+1]+nums[j+2])continue;
                 int k=j+1;
                 int l=nums.length-1;
                 while(k<l){
