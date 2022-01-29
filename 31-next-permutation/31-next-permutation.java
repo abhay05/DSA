@@ -10,20 +10,31 @@ class Solution {
             int minMax=1000000000;
             
             if(maxValue<val){maxValue=val;continue;}
-            for(int j=i+1;j<n;j++){
-                if(nums[j]>nums[i] && minMax>nums[j]){
-                    minMax=nums[j];
-                    ind=j;
+            Arrays.sort(nums,i+1,n);
+            int l=i+1;
+            int u=n-1;
+            while(l<=u){
+                int mid=(l+u)/2;
+                if(nums[mid]>nums[i]){
+                    u=mid-1;
+                    
+                    if(nums[mid-1]<=nums[i]){
+                        ind=mid;break;
+                    }
+                }else if(nums[mid]<=nums[i]){
+                    l=mid+1;
                 }
             }
             if(ind!=-1){
-                st=i;
+                int temp=nums[i];
+                nums[i]=nums[ind];
+                nums[ind]=temp;
                 break;
             }
             
         }
         if(ind==-1){
-  
+  System.out.println("hh");
               int i=0;
             int j=n-1;
             while(i<j){
@@ -33,12 +44,6 @@ class Solution {
                 i++;j--;
             }
             
-        }else{
-
-        int temp=nums[ind];
-            nums[ind]=nums[st];
-        nums[st]=temp;
-            Arrays.sort(nums,st+1,n);
         }
     }
 }
