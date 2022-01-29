@@ -4,10 +4,12 @@ class Solution {
         int cnt=0;
         int st=0;
         int ind=-1;
+        int maxValue=nums[n-1];
         for(int i=n-2;i>=0;i--){
             int val=nums[i];
             int minMax=1000000000;
             
+            if(maxValue<val){maxValue=val;continue;}
             for(int j=i+1;j<n;j++){
                 if(nums[j]>nums[i] && minMax>nums[j]){
                     minMax=nums[j];
@@ -18,9 +20,10 @@ class Solution {
                 st=i;
                 break;
             }
-            cnt++;
+            
         }
-        if(cnt==n-1){
+        if(ind==-1){
+  
               int i=0;
             int j=n-1;
             while(i<j){
@@ -31,13 +34,8 @@ class Solution {
             }
             
         }else{
+
         int temp=nums[ind];
-//         while(ind>st){
-                
-//                 nums[ind]=nums[ind-1];
-               
-//                 ind--;
-//             }
             nums[ind]=nums[st];
         nums[st]=temp;
             Arrays.sort(nums,st+1,n);
