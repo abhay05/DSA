@@ -1,5 +1,8 @@
 class Solution {
     public boolean isValidSudoku(char[][] board) {
+        List<HashMap<Character,Integer>> mp=new ArrayList<HashMap<Character,Integer>>();
+        List<HashMap<Character,Integer>> m1p=new ArrayList<HashMap<Character,Integer>>();
+        List<List<HashMap<Character,Integer>>> mps=new ArrayList<List<HashMap<Character,Integer>>>();
         
         for(int i=0;i<9;i++){
             HashMap<Character,Integer> temp1=new HashMap<Character,Integer>();
@@ -9,6 +12,7 @@ class Solution {
                 }
                 temp1.put(board[i][j],1);
             }
+            mp.add(temp1);
         }
         
         for(int i=0;i<9;i++){
@@ -19,7 +23,11 @@ class Solution {
                 }
                 temp1.put(board[j][i],1);
             }
-        }    
+            m1p.add(temp1);
+        }
+        
+//         HashMap<Character,Integer>[][] arrayDict = new HashMap<Character,Integer>[3][3];
+        
         for(int i=0;i<3;i++){
             for(int j=0;j<3;j++){
                  HashMap<Character,Integer> temp1=new HashMap<Character,Integer>();
