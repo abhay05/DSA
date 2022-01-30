@@ -1,9 +1,5 @@
 class Solution {
-    public boolean isValidSudoku(char[][] board) {
-        List<HashMap<Character,Integer>> mp=new ArrayList<HashMap<Character,Integer>>();
-        List<HashMap<Character,Integer>> m1p=new ArrayList<HashMap<Character,Integer>>();
-        List<List<HashMap<Character,Integer>>> mps=new ArrayList<List<HashMap<Character,Integer>>>();
-        
+    public boolean isValidSudoku(char[][] board) {        
         for(int i=0;i<9;i++){
             HashMap<Character,Integer> temp1=new HashMap<Character,Integer>();
             for(int j=0;j<9;j++){
