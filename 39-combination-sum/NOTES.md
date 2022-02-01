@@ -1,0 +1,1 @@
+Objects are passed as references by java, so when you want return some object,create a new object, put elements of previous object inside new object instead of doing new=previous, this will protect new object from add/remove on previous object
