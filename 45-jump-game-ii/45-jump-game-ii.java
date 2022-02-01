@@ -6,7 +6,7 @@ class Solution {
         }
         if(dp[ind]!=-1)return dp[ind];
         int ans=1000000000;
-        for(int i=1;i<=nums[ind];i++){
+        for(int i=1;i<=nums[ind] && ind+i<n;i++){
             ans=Math.min(ans,recur(nums,ind+i,n));
         }
         dp[ind]=ans+1;
