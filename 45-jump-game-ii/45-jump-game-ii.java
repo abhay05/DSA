@@ -8,8 +8,8 @@ class Solution {
                 curr=maxL;
                 ans++;
             }
+            if(curr>nums.length)break;
             maxL=Math.max(maxL,i+nums[i]);
-        
         }
         return ans;
     }
