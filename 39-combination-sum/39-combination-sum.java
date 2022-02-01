@@ -15,7 +15,7 @@ class Solution {
             larr.add(temp);
             return larr;
         }
-        if(ind >=candidates.length || target/candidates[ind]==0){
+        if(ind >=candidates.length){
             return new ArrayList<List<Integer>>(); 
             
         }
@@ -43,7 +43,6 @@ class Solution {
     }
     
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
-        Arrays.sort(candidates);
        return recur(candidates,0,target,new ArrayList<Integer>());
         
     }
