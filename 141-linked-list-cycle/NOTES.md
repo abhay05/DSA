@@ -1,5 +1,6 @@
-Alternative elegant appproach
+Alternative elegant approach
 
+```
 public boolean hasCycle(ListNode head) {
   ListNode slow = head, fast = head;
   
@@ -13,3 +14,4 @@ public boolean hasCycle(ListNode head) {
   
   return false;
 }
+```
