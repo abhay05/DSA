@@ -27,19 +27,9 @@ public class Solution {
         }
         if(f==0){return null;}
         ListNode headT=head;
-        heada=heada.next;
-        headb=headb.next.next;
-        while(headT!=heada && headT!=headb){
-            while(heada!=headb){
-            heada=heada.next;
-            headb=headb.next.next;
-                if(headT==heada || headT==headb){
-                return headT;
-                }
-            }
+        while(headT!=heada){
             headT=headT.next;
             heada=heada.next;
-            headb=headb.next.next;
         }
         return headT;
         
