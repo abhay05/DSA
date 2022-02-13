@@ -26,17 +26,11 @@ class Solution {
                 b=b.next;
             }
         }
-        while(a!=null){
-            ListNode newNode= new ListNode(a.val);
-                head.next=newNode;
-                head=head.next;
-                a=a.next;
+        if(a!=null){
+            head.next=a;
         }
-        while(b!=null){
-            ListNode newNode=new ListNode(b.val);
-                head.next=newNode;
-                head=head.next;
-                b=b.next;
+        if(b!=null){
+            head.next=b;
         }
         return ans.next;
     }
