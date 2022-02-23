@@ -24,6 +24,11 @@ class Solution {
             dp[i][0]=-1;
             dp[i][1]=-1;
         }
-        return getEggs(n,0,1);
+        //return getEggs(n,0,1);
+        int ans=0;
+        while((ans*(ans+1))/2<n){
+            ans++;
+        }
+        return ans;
     }
 }
