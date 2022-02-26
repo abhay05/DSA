@@ -14,7 +14,7 @@ class Solution {
     
     public int superEggDrop(int k, int n) {
         if(k==1)return n;
-        for(int i=0;i<10001;i++){
+        for(int i=0;i<51;i++){
             for(int j=0;j<101;j++){
                 dp[i][j]=-1;
             }         
@@ -23,7 +23,7 @@ class Solution {
         for(int i=0;i<101;i++){
             dp[0][i]=0;
         }
-        for(int i=0;i<10001;i++){
+        for(int i=0;i<51;i++){
       //      dp[i][1]=1;
             dp[i][0]=0;
         }
