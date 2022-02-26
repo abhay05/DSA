@@ -11,45 +11,6 @@ class Solution {
     
     int[][] dp= new int[10001][101];
     
-    public int getEggs(int n,int i,int eggs){
-        if(i==n){
-            return 0;
-        }
-        if(eggs==1){
-            return 0;
-        }
-        if(dp[n-i][eggs]!=-1){return dp[n-i][eggs];}
-        int maxi=1000000000;
-        
-        int l=i+1;
-        int u=n;
-        int best=-1;
-        while(l+1<u){  
-            int mid=(l+u)/2;
-          //  System.out.println(l+" "+mid+" "+u);
-            int val1=getEggs(n,mid,eggs)+1;
-            int val2=getEggs(n,n-(mid-i)+1,eggs-1)+(eggs-1==1?mid-i:1);
-            
-            if(val1>val2){
-                l=mid;
-            }else if(val2>val1){
-                u=mid;
-            }else{
-             best=mid;
-                break;
-            }
-        }
-        if(best!=-1){
-            maxi=Math.min(maxi,Math.max(getEggs(n,best,eggs)+1,getEggs(n,n-(best-i)+1,eggs-1)+(eggs-1==1?best-i:1)));
-        }
-        else{
-            maxi=Math.min(maxi,Math.max(getEggs(n,l,eggs)+1,getEggs(n,n-(l-i)+1,eggs-1)+(eggs-1==1?l-i:1)));
-            maxi=Math.min(maxi,Math.max(getEggs(n,u,eggs)+1,getEggs(n,n-(u-i)+1,eggs-1)+(eggs-1==1?u-i:1)));
-        }
-        
-        dp[n-i][eggs]=maxi;
-        return maxi;
-    }
     
     public int superEggDrop(int k, int n) {
         if(k==1)return n;
@@ -57,7 +18,29 @@ class Solution {
             for(int j=0;j<101;j++){
                 dp[i][j]=-1;
             }         
-         } 
-        return getEggs(n,0,k);
+         }
+        dp[0][0]=0;
+        for(int i=0;i<101;i++){
+            dp[0][i]=0;
+        }
+        for(int i=0;i<10001;i++){
+      //      dp[i][1]=1;
+            dp[i][0]=0;
+        }
+       // dp[0][0]=-1;
+        int m=1;
+        int val=0;
+        int eggs=2;
+        while(val<n){
+            eggs=1;
+            while(eggs<=k){
+            dp[m][eggs]=dp[m-1][eggs]+1+dp[m-1][eggs-1];
+                eggs++;
+            }
+            val=dp[m][k];
+            m++;
+            
+        }
+        return --m;
     }
 }
