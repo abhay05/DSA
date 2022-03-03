@@ -1,5 +1,5 @@
 class Solution {
-    HashMap<Integer,Integer>hm = new HashMap<Integer,Integer>();
+   static HashMap<Integer,Integer>hm = new HashMap<Integer,Integer>();
     
     int getMini(int val){
         if(val==0){
@@ -21,6 +21,7 @@ class Solution {
     }
     
     public int numSquares(int n) {
+        if(hm.containsKey(n))return hm.get(n);
         return getMini(n);
     }
 }
