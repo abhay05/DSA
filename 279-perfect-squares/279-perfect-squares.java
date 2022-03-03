@@ -1,27 +1,30 @@
+//Lagrange’s four-square theorem
+
 class Solution {
-   static HashMap<Integer,Integer>hm = new HashMap<Integer,Integer>();
-    
-    int getMini(int val){
-        if(val==0){
-            return 0;
-        }
-        if(hm.containsKey(val)){return hm.get(val);}
-        int mini=1000000000;
-
-        for(int i=1;i*i<=val;i++){            
-            int cnt=1;  
-            int sq=i*i;
-            int temp=val-sq; 
-                mini=Math.min(mini,getMini(temp)+cnt);
-                cnt++;
-        }
-
-        hm.put(val,mini);
-        return mini;
-    }
     
     public int numSquares(int n) {
-        if(hm.containsKey(n))return hm.get(n);
-        return getMini(n);
+        int srt=(int)Math.sqrt(n);
+        if(n==srt*srt){
+            return 1;
+        }
+        
+        for(int i=1;i*i<=n;i++){
+             srt=(int)Math.sqrt(n-i*i);
+            if(n-i*i==srt*srt){
+                return 2;
+            }
+        }
+        
+        // 4^k*(8*m+7)
+        int temp=n;
+        while(temp%4==0){
+            temp/=4;
+        }
+        if(temp%8==7){
+            return 4;
+        }
+        
+        return 3;
+        
     }
 }
