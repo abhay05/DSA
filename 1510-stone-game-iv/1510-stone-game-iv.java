@@ -1,5 +1,5 @@
 class Solution {
-    HashMap<Integer,Integer>mp=new HashMap<Integer,Integer>();
+   static HashMap<Integer,Integer>mp=new HashMap<Integer,Integer>();
     int findWinner(int n,int p){
         if(n==0){
             return 1-p;
