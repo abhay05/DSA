@@ -1,43 +1,34 @@
+// Alice - x , Bob - y
+// if(x-y>0) Alice
+// if(x-y<0) Bob
+// if(x-y==0) Tie
+
+
 class Solution {
-    HashMap<Integer,Integer>mp=new HashMap<Integer,Integer>();
-    int recur(int[] arr,int n,int ind,int p){
-        if(ind>=n){
-            return -1001;
-        }
-        if(mp.containsKey(ind*2+p)){
-            return mp.get(ind*2+p);
-        }
-        int x1=ind+1<=n?recur(arr,n,ind+1,1-p):-1001;
-        int x2=ind+2<=n?recur(arr,n,ind+2,1-p):-1001;
-        int x3=ind+3<=n?recur(arr,n,ind+3,1-p):-1001;
-       // System.out.println(x1+" "+x2+" "+x3+" "+ind);
-        int val1=ind+1<=n?(p==1?arr[ind+0]:-1001):-1001;
-        int val2=ind+2<=n?(p==1?arr[ind+0]+arr[ind+1]:-1001):-1001;
-        int val3=ind+3<=n?(p==1?arr[ind+0]+arr[ind+1]+arr[ind+2]:-1001):-1001;
-         if(p==1){
-             int ans = Math.max(x1+val1,Math.max(x2+val2,x3+val3));
-             mp.put(ind*2+p,ans);
-             return ans;
-         }
-        else{
-            int ans=Math.min(x1,Math.min(x2,x3));
-            mp.put(ind*2+p,ans);
-            return ans;
-            }
-    }
     
     public String stoneGameIII(int[] stoneValue) {
-    int val=recur(stoneValue,stoneValue.length,0,1);
-        int total=0;
-        val=val+1001;
-        //System.out.println("ans "+val);
-        for(int i=0;i<stoneValue.length;i++){
-            total+=stoneValue[i];
+        int n=stoneValue.length;
+        int [] arr=stoneValue;
+        int[] dp= new int[n+4];
+        dp[n]=0;
+        dp[n+2]=0;
+        dp[n+1]=0;
+        dp[n-1]=-1;
+        for(int i=n-2;i>=0;i--){
+            dp[i]=-1;
         }
-        if(val>total-val){
+        for(int ind=n-1;ind>=0;ind--){
+            int x1=ind+1<=n?arr[ind]-dp[ind+1]:-1001;
+            int x2=ind+2<=n?arr[ind]+arr[ind+1]-dp[ind+2]:-1001;
+            int x3=ind+3<=n?arr[ind]+arr[ind+1]+arr[ind+2]-dp[ind+3]:-1001;
+            int ans=Math.max(x1,Math.max(x2,x3));
+            dp[ind]=ans;
+        }
+        int val=dp[0];
+        if(val>0){
             return "Alice";
         }
-        if(val==total-val){
+        if(val==0){
             return "Tie";
         }
         return "Bob";
