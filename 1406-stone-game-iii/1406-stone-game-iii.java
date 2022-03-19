@@ -3,6 +3,7 @@
 // if(x-y<0) Bob
 // if(x-y==0) Tie
 
+// O(1) space; O(n) time , best solution
 
 class Solution {
     
