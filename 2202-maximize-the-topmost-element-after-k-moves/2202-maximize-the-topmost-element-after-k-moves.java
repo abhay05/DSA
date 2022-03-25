@@ -7,14 +7,11 @@ class Solution {
             ans=Math.max(ans,nums[i]);
             cnt++;
         }
-       // if(ans==-1)return -1;
-       // int  val=(k<=n?nums[k-1]:-1);
         if(nums.length==1){
             if(k%2==1){return -1;}
             else{return nums[0];}
         }
         int val1=(k+1<=n?nums[k]:-1);
-        System.out.println(ans+" "+val1);
         return Math.max(ans,val1);
     }
 }
