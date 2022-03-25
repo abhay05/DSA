@@ -1,16 +1,10 @@
 class Solution {
     public int findCenter(int[][] edges) {
-        int[] arr=new int[100001];
-        int maxnode=0;
-        for(int i=0;i<edges.length;i++){
-            maxnode=Math.max(maxnode,Math.max(edges[i][0],edges[i][1]));
-            arr[edges[i][0]]++;
-            arr[edges[i][1]]++;
+        if(edges[1][0]==edges[0][0] || edges[1][0]==edges[0][1]){
+            return edges[1][0];
         }
-        for(int i=1;i<=maxnode;i++){
-            if(arr[i]==maxnode-1){
-                return i;
-            }
+        if(edges[1][1]==edges[0][0] || edges[1][1]==edges[0][1]){
+            return edges[1][1];
         }
         return -1;
     }
