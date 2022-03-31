@@ -1,4 +1,26 @@
-Beautiful Pegion Hole Principle
+Tortoise and Hare approach - O(1) space , O(n) time - ideal
+```
+class Solution {
+public int findDuplicate(int[] nums) {
+int slow=0;
+int fast=0;
+slow=nums[slow];
+fast=nums[nums[fast]];
+while(nums[slow]!=nums[fast]){
+slow=nums[slow];
+fast=nums[nums[fast]];
+}
+int ans=0;
+while(nums[slow]!=nums[ans]){
+slow=nums[slow];
+ans=nums[ans];
+}
+return nums[ans];
+}
+}
+```
+​
+Beautiful Pigeon Hole Principle -> O(1) space, O(nlogn) time
 ​
 ```
 class Solution {
@@ -20,11 +42,3 @@ u=mid;
 else{
 l=mid+1;
 }
-}
-return l;
-}
-}
-```
-​
-​
-​
