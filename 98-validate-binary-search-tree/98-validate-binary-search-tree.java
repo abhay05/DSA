@@ -18,6 +18,7 @@ class Solution {
         Stack<TreeNode> stack = new Stack<TreeNode>();
         stack.push(root);
         List<Integer> list=new ArrayList<Integer>();
+        TreeNode last=null;
         while(stack.size()>0){
             root=stack.pop();
             while(root!=null){
@@ -29,13 +30,13 @@ class Solution {
             }
             if(!stack.empty()){
             root=stack.pop();
-            if(list.size()>0 && root.val<=list.get(list.size()-1))return false;
-            list.add(root.val);
+            if(last!=null && root.val<=last.val)return false;
+                last=root;
             }
             while(root!=null && root.right==null && !stack.empty()){
                 root=stack.pop();
-                if(root.val<=list.get(list.size()-1))return false;
-                list.add(root.val);
+                if(last!=null && root.val<=last.val)return false;
+                last=root;
                 
             }
             if(root!=null && root.right!=null && root.val>=root.right.val){
