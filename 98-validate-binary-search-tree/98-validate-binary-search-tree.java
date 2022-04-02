@@ -14,14 +14,48 @@
  * }
  */
 class Solution {
-    TreeNode prev=null;
     public boolean isValidBST(TreeNode root) {
-        if(root==null)return true;
-        if(!isValidBST(root.left))return false;
-        if(prev!=null && prev.val>=root.val)return false;
-        prev=root;
-        if(!isValidBST(root.right))return false;
+        Stack<TreeNode> stack = new Stack<TreeNode>();
+        stack.push(root);
+        List<Integer> list=new ArrayList<Integer>();
+        while(stack.size()>0){
+            root=stack.pop();
+            while(root!=null){
+                stack.push(root);
+                if(root.left!=null && root.left.val>=root.val){
+                    return false;
+                }
+                root=root.left;
+            }
+            if(!stack.empty()){
+            root=stack.pop();
+            if(list.size()>0 && root.val<=list.get(list.size()-1))return false;
+            list.add(root.val);
+            }
+            while(root!=null && root.right==null && !stack.empty()){
+                root=stack.pop();
+                if(root.val<=list.get(list.size()-1))return false;
+                list.add(root.val);
+                
+            }
+            if(root!=null && root.right!=null && root.val>=root.right.val){
+                return false;
+            }
+            if(root!=null && root.right !=null && root.right.left!=null && root.right.left.val<=root.val){
+                return false;
+            }
+            if(root!=null){
+            root=root.right;}
+            if(!stack.empty()){
+            TreeNode top=stack.peek();
+            if(top!=null && top.val<=root.val){return false;}
+            }
+            if(root!=null){
+            stack.push(root);}
+        }
+        
         return true;
         
     }
+    
 }
