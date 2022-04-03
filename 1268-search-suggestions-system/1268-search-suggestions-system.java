@@ -12,37 +12,6 @@ public class Node{
 
 class Solution {
     
-    List<String> traverse(Node node){
-        
-            boolean flag=false;
-            for(int i=0;i<26;i++){
-                if(node.letter[i]!=null){
-                    flag=(flag|true);
-                }
-            }
-            if(!flag){
-                List<String> temp= new ArrayList<>();
-            temp.add("");
-                return temp;
-            }
-            
-        
-        List<String> ans=new ArrayList<>();
-        for(int i=0;i<26;i++){
-            if(node.letter[i]!=null){
-               // System.out.println("is End "+node.isEnd + "  char "+(char)('a'+i));
-                if(node.isEnd){
-                    ans.add("");
-                }
-               List<String> tempArr= traverse(node.letter[i]); 
-                for(String st:tempArr){
-                    ans.add((char)(i+'a')+st);
-                }
-            }
-        }
-        return ans;
-    }
-    
     public List<List<String>> suggestedProducts(String[] products, String searchWord) {
         Node head=new Node();
         for(int i=0;i<products.length;i++){
