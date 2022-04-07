@@ -21,11 +21,11 @@ class Solution {
                     long cnt1=0;
                     long cnt2=0;
                    // System.out.println(i+" "+j+" "+k);
-                    if(arr[i]==arr[j] && arr[j]==arr[k]){
-                        ans=(ans+((long)(k-i+1)*(long)(k-i)*(long)(k-i-1))/6)%mod;
-                        i=k;
-                        break;
-                    }
+                    // if(arr[i]==arr[j] && arr[j]==arr[k]){
+                    //     ans=(ans+((long)(k-i+1)*(long)(k-i)*(long)(k-i-1))/6)%mod;
+                    //     i=k;
+                    //     break;
+                    // }
                     while(j<n-1 && arr[j]==arr[j+1]){
                         j++;
                         cnt1++;
@@ -35,7 +35,7 @@ class Solution {
                         cnt1++;
                     
                     
-                    while(k>0 && arr[k]==arr[k-1]){
+                    while(k>i+1 && arr[k]==arr[k-1]){
                         k--;
                         cnt2++;
                     }
