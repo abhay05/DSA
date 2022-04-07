@@ -1,51 +1,57 @@
 class Solution {
     public int threeSumMulti(int[] arr, int target) {
-        int []A=arr;
-        int MOD = 1_000_000_007;
-        long ans = 0;
-        Arrays.sort(A);
-
-        for (int i = 0; i < A.length; ++i) {
-            // We'll try to find the number of i < j < k
-            // with A[j] + A[k] == T, where T = target - A[i].
-
-            // The below is a "two sum with multiplicity".
-            int T = target - A[i];
-            int j = i+1, k = A.length - 1;
-
-            while (j < k) {
-                // These steps proceed as in a typical two-sum.
-                if (A[j] + A[k] < T)
+        long ans=0;
+        long mod=1000000007;
+        Arrays.sort(arr);
+        int n=arr.length;
+        for(int i=0;i<n;i++){
+            int j=i+1;
+            int k=n-1;
+          //  System.out.println(i);
+            int tar=target-arr[i];
+            while(j<k){
+                int sum=arr[j]+arr[k];
+                if(sum<tar){
                     j++;
-                else if (A[j] + A[k] > T)
+                }else if(sum>tar){
                     k--;
-                else if (A[j] != A[k]) {  // We have A[j] + A[k] == T.
-                    // Let's count "left": the number of A[j] == A[j+1] == A[j+2] == ...
-                    // And similarly for "right".
-                    int left = 1, right = 1;
-                    while (j+1 < k && A[j] == A[j+1]) {
-                        left++;
+                }else if(sum==tar){
+                    int tempj=j;
+                    int tempk=k;
+                    long cnt1=0;
+                    long cnt2=0;
+                   // System.out.println(i+" "+j+" "+k);
+                    if(arr[i]==arr[j] && arr[j]==arr[k]){
+                        ans=(ans+((long)(k-i+1)*(long)(k-i)*(long)(k-i-1))/6)%mod;
+                        i=k;
+                        break;
+                    }
+                    while(j<n-1 && arr[j]==arr[j+1]){
                         j++;
+                        cnt1++;
                     }
-                    while (k-1 > j && A[k] == A[k-1]) {
-                        right++;
+                    
+                        j++;
+                        cnt1++;
+                    
+                    
+                    while(k>0 && arr[k]==arr[k-1]){
                         k--;
+                        cnt2++;
                     }
-
-                    ans += left * right;
-                    ans %= MOD;
-                    j++;
-                    k--;
-                } else {
-                    // M = k - j + 1
-                    // We contributed M * (M-1) / 2 pairs.
-                    ans += (k-j+1) * (k-j) / 2;
-                    ans %= MOD;
-                    break;
+                   // if(k>0){
+                        k--;
+                        cnt2++;
+                   // }
+                    if(arr[tempj]!=arr[tempk]){
+                        ans=(ans+cnt1*cnt2)%mod;
+                    }else{
+                    //    System.out.println(j+" "+k);
+                        ans=(ans+((long)(j-k-2)*(long)(j-k-1))/2)%mod;
+                    }
                 }
             }
         }
-
-        return (int) ans;
+        return (int)ans;
     }
 }
