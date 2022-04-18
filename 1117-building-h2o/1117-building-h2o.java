@@ -6,7 +6,7 @@ class H2O {
     public H2O() {
         s1=new Semaphore(0);
         s2=new Semaphore(0);
-        a=new AtomicInteger(0);
+      //  a=new AtomicInteger(0);
         s1.release();
     }
 
@@ -15,9 +15,10 @@ class H2O {
         // releaseHydrogen.run() outputs "H". Do not change or remove this line.
         s1.acquire();
         releaseHydrogen.run();
-        a.incrementAndGet();
-        if(a.get()%2==0){
-            cnt=0;
+       // a.incrementAndGet();
+        cnt++;
+        if(cnt%2==0){
+          //  cnt=0;
             s2.release();
         }else{
         s1.release();}
