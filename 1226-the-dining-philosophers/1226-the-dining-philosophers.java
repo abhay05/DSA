@@ -19,16 +19,16 @@ class DiningPhilosophers {
                            Runnable putRightFork) throws InterruptedException {
         
         philosopherS[philosopher].acquire();
-        left.acquire();
+        //left.acquire();
         pickLeftFork.run();
-        right.acquire();
+      //  right.acquire();
         pickRightFork.run();
        // phaser.arriveAndAwaitAdvance();
         eat.run();
         putLeftFork.run();
-        left.release();
+       // left.release();
         putRightFork.run();
-        right.release();
+       // right.release();
         philosopherS[philosopher].release();
         
     }
