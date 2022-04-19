@@ -18,7 +18,7 @@ class DiningPhilosophers {
                            Runnable putLeftFork,
                            Runnable putRightFork) throws InterruptedException {
         
-        philosopherS[philosopher].acquire();
+      //  philosopherS[philosopher].acquire();
         //left.acquire();
         pickLeftFork.run();
       //  right.acquire();
@@ -29,7 +29,7 @@ class DiningPhilosophers {
        // left.release();
         putRightFork.run();
        // right.release();
-        philosopherS[philosopher].release();
+       // philosopherS[philosopher].release();
         
     }
 }
