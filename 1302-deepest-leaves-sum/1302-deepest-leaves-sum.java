@@ -14,35 +14,20 @@
  * }
  */
 class Solution {
-    Map<Integer,Integer>mp=new HashMap<Integer,Integer>();
-    void recur(TreeNode root,int level){
-        if(root==null)return;
-        if(root.left!=null){
-            recur(root.left,level+1);
-        }
-        if(!mp.containsKey(level)){
-            mp.put(level,root.val);
-        }else{
-            int valx=mp.get(level);
-            mp.put(level,valx+root.val);
-        }
-       // System.out.println(level+" "+root.val);
-        if(root.right!=null){
-            recur(root.right,level+1);
-        }
-        return ;
-        
-    }
+
     public int deepestLeavesSum(TreeNode root) {
-        recur(root,0);
-        int val=0;
-        int ans=0;
-        for(Map.Entry<Integer,Integer>pr:mp.entrySet()){
-            if(pr.getKey()>val){
-                ans=pr.getValue();
-                val=pr.getKey();
-            }
+        Queue<TreeNode>q = new LinkedList<TreeNode>();
+        if(root!=null)q.add(root);
+       int res=0,i=0;
+        while(q.size()>0){
+            
+        for( i=q.size()-1,res=0;i>=0;i--){
+             root=q.poll();
+            res+=root.val;
+            if(root.right!=null)q.add(root.right);
+            if(root.left!=null)q.add(root.left);
         }
-        return ans;
+        }
+        return res;
     }
 }
