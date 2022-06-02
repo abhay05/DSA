@@ -28,9 +28,9 @@ class Solution {
             for(int j=0;j<=n;j++){
                 
                     Pair<Integer,Integer>p=list.get(k);
-                    if(i>=p.getKey() && j>=p.getValue() && ind[i-p.getKey()][j-p.getValue()]<k){
-                        if(dp[i][j]<dp[i-p.getKey()][j-p.getValue()]+1){
-                            dp[i][j]=dp[i-p.getKey()][j-p.getValue()]+1;
+                    if(i+p.getKey()<=m && j+p.getValue()<=n && ind[i+p.getKey()][j+p.getValue()]<k){
+                        if(dp[i][j]<dp[i+p.getKey()][j+p.getValue()]+1){
+                            dp[i][j]=dp[i+p.getKey()][j+p.getValue()]+1;
                             ind[i][j]=k;
                             //System.out.println(i+" "+j+" "+dp[i][j]+" "+k);
                             ans=Math.max(ans,dp[i][j]);
