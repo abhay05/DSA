@@ -17,19 +17,16 @@ class Solution {
             list.add(new Pair(cnt0,cnt1));
         }
         for(int k=0;k<list.size();k++){
-        for(int i=0;i<=m;i++){
-            for(int j=0;j<=n;j++){
-                
-                    Pair<Integer,Integer>p=list.get(k);
-                    if(i+p.getKey()<=m && j+p.getValue()<=n){
-                        if(dp[i][j]<dp[i+p.getKey()][j+p.getValue()]+1){
+            Pair<Integer,Integer>p=list.get(k);
+        for(int i=0;i<=m-p.getKey();i++){
+            for(int j=0;j<=n-p.getValue();j++){
+                if(dp[i][j]<dp[i+p.getKey()][j+p.getValue()]+1){
                             dp[i][j]=dp[i+p.getKey()][j+p.getValue()]+1;
                         }
                     }
-                }
             }
         }
-       // int ans=0;
+
         return dp[0][0];
         
     }
