@@ -16,23 +16,16 @@ class Solution {
             }
             list.add(new Pair(cnt0,cnt1));
         }
-        int[][] ind=new int[m+1][n+1];
-        for(int i=0;i<=m;i++){
-            for(int j=0;j<=n;j++){
-                ind[i][j]=-1;
-            }
-        }
         int ans=0;
         for(int k=0;k<list.size();k++){
         for(int i=0;i<=m;i++){
             for(int j=0;j<=n;j++){
                 
                     Pair<Integer,Integer>p=list.get(k);
-                    if(i+p.getKey()<=m && j+p.getValue()<=n && ind[i+p.getKey()][j+p.getValue()]<k){
+                    if(i+p.getKey()<=m && j+p.getValue()<=n){
                         if(dp[i][j]<dp[i+p.getKey()][j+p.getValue()]+1){
                             dp[i][j]=dp[i+p.getKey()][j+p.getValue()]+1;
-                            ind[i][j]=k;
-                            //System.out.println(i+" "+j+" "+dp[i][j]+" "+k);
+                            
                             ans=Math.max(ans,dp[i][j]);
                         }
                     }
