@@ -7,9 +7,9 @@ struct comp{
 
 class FoodRatings {
 public:
-    map<string,int>foodRating;
-    map<string,string>foodCuisine;
-    map<string,priority_queue<pair<int,string>,vector<pair<int,string>>,comp>>mp;
+    unordered_map<string,int>foodRating;
+    unordered_map<string,string>foodCuisine;
+    unordered_map<string,priority_queue<pair<int,string>,vector<pair<int,string>>,comp>>mp;
     FoodRatings(vector<string>& foods, vector<string>& cuisines, vector<int>& ratings) {
         for(int i=0;i<foods.size();i++){
             foodRating[foods[i]]=ratings[i];
