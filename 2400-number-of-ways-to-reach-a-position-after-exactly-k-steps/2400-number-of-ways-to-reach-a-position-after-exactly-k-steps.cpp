@@ -10,10 +10,10 @@ public:
             return 0;
         }
         if(pos>4000 || pos<0)return 0;
-        if(dp[k][pos]!=-1)return dp[k][pos]-1;
-        int ans=(1+recur(k+1,pos+1,K,endPos)%N+recur(k+1,pos-1,K,endPos)%N)%N;
+        if(dp[k][pos]!=-1)return dp[k][pos];
+        int ans=(recur(k+1,pos+1,K,endPos)%N+recur(k+1,pos-1,K,endPos)%N)%N;
         dp[k][pos]=ans;
-        return ans-1;
+        return ans;
     }
     
     int numberOfWays(int startPos, int endPos, int k) {
