@@ -1,37 +1,59 @@
 class Solution {
 public:
+    
+    int size[100001];
+    int par[100001];
+    
+    void unionT(int u,int v){
+        if(size[u]>size[v]){
+            size[u]+=size[v];
+            par[v]=u;
+        }else{
+            size[v]+=size[u];
+            par[u]=v;
+        }
+    }
+    
+    int find(int u){
+        while(u!=par[u]){
+            u=par[u];
+        }
+        return u;
+    }
+    
     int validSubarraySize(vector<int>& nums, int threshold) {
-        stack<int>st;
         int n=nums.size();
-        int nextS[n];
-        int prevS[n];
+        vector<pair<int,int>>numsp;
         for(int i=0;i<n;i++){
-            nextS[i]=n;
-            prevS[i]=-1;
+            size[i]=1;
+            par[i]=i;
+            numsp.push_back({nums[i],i});
+            
         }
-        for(int i=0;i<n;i++){
-            while(st.size()>0 && nums[st.top()]>nums[i]){
-                nextS[st.top()]=i;
-                st.pop();
+        sort(numsp.begin(),numsp.end());
+        reverse(numsp.begin(),numsp.end());
+        set<int>st;
+        for(int i=0;i<numsp.size();i++){
+            
+            int ind=numsp[i].second;
+            int val=numsp[i].first;
+        //    cout<<val<<' '<<ind<<"\n";
+            if(st.find(ind+1)!=st.end()){
+                int parind=find(ind);
+                int parindp=find(ind+1);
+                unionT(parind,parindp);
             }
-            st.push(i);
-        }
-        stack<int>stp;
-        for(int i=n-1;i>=0;i--){
-            while(stp.size()>0 && nums[stp.top()]>nums[i]){
-                prevS[stp.top()]=i;
-                stp.pop();
+            if(st.find(ind-1)!=st.end()){
+                int parind=find(ind);
+                int parindp=find(ind-1);
+                unionT(parind,parindp);
             }
-            stp.push(i);
-        }
-        
-        for(int i=0;i<n;i++){
-            int length=(nextS[i]==-1?0:nextS[i]-1-i)+(prevS[i]==i+1?0:i-1-prevS[i])+1;
-            if(length<=0)length=1;
-            //cout<<i<<' '<<' '<<nextS[i]<<' '<<prevS[i]<<' '<<length<<' '<<threshold<<'\n';
-            if(nums[i]>threshold/length){
-                return length;
+            
+            int parind=find(ind);
+            if(val>threshold/size[parind]){
+                return size[parind];
             }
+            st.insert(ind);
         }
         return -1;
     }
