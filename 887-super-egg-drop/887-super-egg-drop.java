@@ -14,6 +14,16 @@ class Solution {
     
     public int superEggDrop(int k, int n) {
         if(k==1)return n;
+        int cnt=0;
+        int temp=n;
+        
+        while(temp!=0){
+            temp=(temp>>1);
+            cnt++;
+        }
+        
+        
+        if(k>=cnt)return cnt;
         for(int i=0;i<51;i++){
             for(int j=0;j<101;j++){
                 dp[i][j]=-1;
