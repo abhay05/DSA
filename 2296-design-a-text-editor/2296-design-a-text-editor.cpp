@@ -1,70 +1,35 @@
 class TextEditor {
 public:
-    stack<char>a;
-    stack<char>b;
+    string a,b;
     
     void addText(string text) {
-        for(char c:text){
-            a.push(c);
-        }
+        a.insert(a.end(),text.begin(),text.end());
     }
     
     int deleteText(int k) {
-        int cnt=0;
-        while(k>0 && a.size()>0){
-            a.top();a.pop();
-            k--;
-            cnt++;
-        }
-        return cnt;
+        int del=min((int)a.size(),k);
+        a.resize(a.size()-del);
+        return del;
     }
     
     string cursorLeft(int k) {
         while(k>0 && a.size()>0){
-            char c=a.top();a.pop();
-            b.push(c);
+            b.push_back(a.back());
+            a.pop_back();
             k--;
         }
-        int temp=min(10,(int)a.size());
-        int len=temp;
-        string ret="";
-        while(len>0){
-            char c=a.top();a.pop();
-            b.push(c);
-            ret=c+ret;
-            len--;
-        }
-        len=temp;
-        while(len>0){
-            char c=b.top();b.pop();
-            a.push(c);
-            len--;
-        }
-        return ret;
+        int len=min(10,(int)a.size());
+        return a.substr(a.size()-len,len);
     }
     
     string cursorRight(int k) {
         while(k>0 && b.size()>0){
-            char c=b.top();b.pop();
-            a.push(c);
+            a.push_back(b.back());
+            b.pop_back();
             k--;
         }
-        int temp=min(10,(int)a.size());
-        int len=temp;
-        string ret="";
-        while(len>0){
-            char c=a.top();a.pop();
-            b.push(c);
-            ret=c+ret;
-            len--;
-        }
-        len=temp;
-        while(len>0){
-            char c=b.top();b.pop();
-            a.push(c);
-            len--;
-        }
-        return ret;
+        int len=min(10,(int)a.size());
+        return a.substr(a.size()-len,len);
     }
 };
 
