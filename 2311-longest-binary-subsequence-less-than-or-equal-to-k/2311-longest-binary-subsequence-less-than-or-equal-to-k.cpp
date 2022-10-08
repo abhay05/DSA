@@ -2,7 +2,7 @@ class Solution {
 public:
     
     int longestSubsequence(string s, int k) {
-        long long temp=(long long)k;
+        int temp=k;
         reverse(s.begin(),s.end());
         int ans=0;
         int pow=0;
@@ -17,13 +17,11 @@ public:
             ans++;
                 pow++;
             }else{
-                if(pow<=maxi){
-                    if(temp>0){
-                    temp-=(long long)(1<<pow);
+                if(pow<=maxi && temp>0){
+                    temp-=(1<<pow);
                     if(temp>=0){
                         ans++;
                         pow++;
-                    }
                     }
                 }
             }
