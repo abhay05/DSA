@@ -10,7 +10,7 @@ public:
         for(auto e:mp){
             int a=e.first;
             int b=e.second;
-            if(mp.find(a-1)!=mp.end()){
+            if(mp[a-1]>0){
                 cnt++;
             }else{
                 cnt=1;
